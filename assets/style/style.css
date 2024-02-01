@@ -1,4 +1,4 @@
-*{
+*, *::before, *::after{
   box-sizing: border-box;
 }
 body {
@@ -6,24 +6,28 @@ body {
     padding: 0;
     margin: 0;
 }
-header{
-  display: inline;
-}
+header.navbar-container {
+  max-width: 1200px;
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-block: 1rem;
+  z-index: 999;
+ }
 nav{
   position: fixed;
   width: 100%;
   height: 90px;
-  top: 0;
-  right: 0;
+  inset-block-start: 0;
+  inset-inline-end: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 100px;
-  box-shadow: 0 0.5rem 50rem rgba(0, 51, 102, 0.1);
   background-color: #ffff;
   padding: 5px;
-  top: 0;
   border-bottom: 3px solid #003366;
 }
 nav a{
@@ -53,15 +57,9 @@ footer {
 .logo img{
   width: 75px;
   height: 75px;
-  margin: 0 30px;
+  gap: 0 30px;
 }
-.profil header{
-  text-align: center;
-}
-.profil img{
-  width: 200px;
-}
-.hero{
+.jumbotron{
   display: flex;
   align-items: center;
   background-image: url('../image/profiluho.jpeg');
@@ -71,7 +69,7 @@ footer {
   min-height: 100vh;
   position: relative;
 }
-.hero::after{
+.jumbotron::after{
   content: '';
   display: block;
   position: absolute;
@@ -80,13 +78,13 @@ footer {
   bottom: 0;
   background: rgba(1,1,3,0.7);
 }
-.hero .content{
+.jumbotron .content-jumbotron{
   color: #ffff;
   z-index: 2;
   padding: 2rem 18%;
   text-align: center;
 }
-.hero .content h1{
+.jumbotron .content-jumbotron h1{
   margin-bottom: 0;
   display: flex;
   justify-content: center;
@@ -94,7 +92,7 @@ footer {
   text-shadow: 1px 1px 3px rgba(1,1,3,0.5);
   line-height: 1.2;
   color: #FF9C33;
-}.hero .content p{
+}.jumbotron .content-jumbotron p{
   display: flex;
   font-size: 1.5em;
   font-weight: 600;
@@ -102,11 +100,57 @@ footer {
 .lokasi{
   font-size: 12px;
   display: flex;
-  margin: 0 20px;
+  gap: 0 20px;
   justify-content: space-between;
 }
 .lokasi a{
   padding-top: 17px;
+}
+.content-jumbotron aside {
+  position: fixed;
+  inset-block-end: 30vh;
+  inset-inline-start: 0;
+}
+.content-jumbotron aside .follow-me{
+  background-color: #003366;
+  padding: 1rem 2rem 1rem 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 3s;
+}
+aside .follow-me img{
+  width: 4rem;
+  height: 4rem;
+  border-radius: 30%;
+}
+aside .follow-me button {
+  width: 5.5rem;
+  height: 2.5rem;
+  border-radius: 10px;
+  
+}
+.hidden{
+  display: none;
+}
+aside .follow-me .social-media ul{
+  list-style-position: inside;
+  padding-left: 0;
+}
+aside .follow-me .social-media li {
+  list-style-type: none;
+}aside .follow-me .social-media li a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  transition: all .1s ease-in-out;
+}
+aside .follow-me .social-media li a:hover {
+  color: #89b0d9;
 }
 #content{
   flex: 5;
@@ -116,7 +160,7 @@ footer {
   min-height: 100vh;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 5px;
-  padding: 20px;
+  padding: 1.2rem;
   margin-top: 20px;
 }
 .heading {
@@ -125,12 +169,12 @@ footer {
   padding: 5rem 2rem 0;
 }
 .konten-tentang{
-  margin: 50px;
+  gap: 3rem;
   display: flex;
   align-items: center;
 }
 .img-tentang {
-  width: 600px;
+  width: 48%;
   height: 300px;
 }
 .img-tentang img {
@@ -140,7 +184,7 @@ footer {
   object-position: center;
 }
 .teks-tentang {
-  max-width: 600px;
+  max-width: 48%;
 }
 .teks-tentang p {
   font-weight: 500;
@@ -232,15 +276,24 @@ form, input, textarea, button a{
   main aside {
     align-self: center;
   }
-  .hero .content h1{
+  .jumbotron .content-jumbotron h1{
     font-size: 2.3em;
   }
   .konten-tentang{
-    display: block;
+    display: flex;
+    flex-direction: column;
   }.img-tentang {
     width: 350px;
     height: 200px;
     margin: auto;
+  }
+  .teks-tentang {
+    max-width: 80%;
+  }
+  .img-galeri {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 7vh;
   }
 }
 @media screen and (max-width: 480px) {
@@ -270,18 +323,21 @@ form, input, textarea, button a{
   main aside {
     align-self: stretch;
   }
-  .hero .content h1{
+  .jumbotron .content-jumbotron h1{
     font-size: 1.5em;
-  }.hero .content p{
+  }.jumbotron .content-jumbotron p{
     font-size: 1em;
   }
   .konten-tentang{
     display: flex;
+    gap: 1rem;
   }
   .img-tentang {
-    width: 270px;
-    height: 120px;
-    margin-left: 0;
+    width: 80%;
+    margin: auto;
+  }
+  .teks-tentang {
+    max-width: 80%;
   }
   .teks-akademik{
     padding: 0;
